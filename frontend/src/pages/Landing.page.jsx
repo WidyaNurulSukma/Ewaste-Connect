@@ -23,13 +23,11 @@ const LandingPage = () => {
     <div style={styles.headerText}>
       <h1 style={styles.heading}>Hi, Folks!</h1>
       <h2 style={styles.subHeading}>
-      <strong>Innovation Dedication</strong><br />
-      <strong>and Sustainable Solution</strong>
+      <strong>Kelola E-Waste Anda Secara Cerdas</strong>
       </h2>
       <p style={styles.description}>
-        Lorem ipsum dolor sit consectetur adipiscing elit. Fusce sed lorem eget urna sodales placerat nulla non semet.
+      Gunakan eWasteConnect untuk permintaan penjemputan, pelacakan, dan pengelolaan barang elektronik bekas Anda.
       </p>
-      <button style={styles.ctaButton}>View Details</button>
     </div>
     <div style={styles.headerIllustration}>
       <img src="/Component 3.png" alt="Header Illustration" style={styles.illustration} />
@@ -51,14 +49,11 @@ const LandingPage = () => {
       <div style={{ fontWeight: 'bold', fontSize: '24px' }}>50</div>
       <p style={{ fontWeight: 'bold', fontSize: '18px' }}>Products</p>
     </div>
-    <div style={styles.statItem}>
-      <div style={{ fontWeight: 'bold', fontSize: '24px' }}>150</div>
-      <p style={{ fontWeight: 'bold', fontSize: '18px' }}>Course & Education</p>
-    </div>
+    
   </div>
 </section>
       <section ref={servicesRef} style={styles.servicesSection}>
-      <h3 style={{ ...styles.sectionHeading, marginBottom: '4px', fontSize: '20px' }}>Kategori</h3>
+ 
       <strong style={{ ...styles.sectionHeading, fontSize: '25px' }}>
         Kami Memberikan Kategori Service Terbaik
       </strong>
@@ -118,12 +113,12 @@ const LandingPage = () => {
   </div>
 </section>
       <section style={styles.testimonialSection}>
-        <h2 style={styles.sectionHeading}>What people say about us</h2>
+        <h2 style={styles.sectionHeading}>Apa yang orang katakan tentang kami</h2>
         <div style={styles.testimonial}>
           <p>
-            "On the Waste Sorting solution, people say it’s easy to use and effective. Diverse options and great support!"
+            "Untuk solusi Pemilahan Sampah Elektronik, banyak orang mengatakan bahwa ini mudah digunakan dan efektif. Pilihan fiturnya beragam dan dukungannya luar biasa!"
           </p>
-          <p style={styles.testimonialAuthor}>- Mike Taylor, Pakistan</p>
+          <p style={styles.testimonialAuthor}>- Mike Taylor, Indonesia</p>
         </div>
         <div style={styles.testimonialDots}>
           <span style={styles.dot}></span>
@@ -160,14 +155,15 @@ const styles = {
   },
   headerText: {
     flex: 1,
-    minWidth: '300px',
+    minWidth: '400px',
     textAlign: 'left',
+    marginLeft: '180px',
   },
   headerIllustration: {
     flex: 1,
     minWidth: '300px',
     textAlign: 'right',
-    marginLeft: '-50px', // Menggeser gambar ke kiri seperti yang diminta
+    marginLeft: '90px', // Menggeser gambar ke kiri seperti yang diminta
   },
   illustration: {
     maxWidth: '100%',

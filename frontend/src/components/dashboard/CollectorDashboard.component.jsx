@@ -29,24 +29,24 @@ const CollectorDashboard = () => {
 
   const quickActions = [
     {
-      name: 'View Pickup Requests',
+      name: 'Melihat permintaan penjemputan',
       icon: <ClipboardList size={24} />,
       action: () => navigate('/pickup/requests')
     },
     {
-      name: "Today's Route",
+      name: "Rute Hari ini",
       icon: <MapPin size={24} />,
       action: () => navigate('/daily-route')
     },
     {
-      name: 'Collection History',
+      name: 'Riwayat',
       icon: <Truck size={24} />,
       action: () => navigate('/collector-history')
     },
     {
       name: 'Edit Profile',
       icon: <User size={24} />,
-      action: () => navigate('/edit-profile')
+      action: () => navigate('/account/profile')
     }
   ];
 
@@ -109,7 +109,7 @@ const CollectorDashboard = () => {
             <li className='flex items-center justify-between text-gray-600'>
               <div className='flex items-center'>
                 <Package size={20} className='mr-2' />
-                <span>123 Main St - 2 items</span>
+                <span>Barang Handphone</span>
               </div>
               <button className='bg-[#6C6C81] text-white px-4 py-2 rounded hover:bg-[#5A5A6D] transition duration-300'>
                 Jemput
@@ -118,7 +118,7 @@ const CollectorDashboard = () => {
             <li className='flex items-center justify-between text-gray-600'>
               <div className='flex items-center'>
                 <Package size={20} className='mr-2' />
-                <span>456 Elm St - 1 item</span>
+                <span>Barang Handphone</span>
               </div>
               <button className='bg-[#6C6C81] text-white px-4 py-2 rounded hover:bg-[#5A5A6D] transition duration-300'>
                 Jemput

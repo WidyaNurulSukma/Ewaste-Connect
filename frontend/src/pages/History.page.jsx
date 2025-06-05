@@ -7,7 +7,6 @@ const History = () => {
     <div className="bg-[#332F9E] min-h-screen text-white">
       <AuthHeader />
       <ContributionHistory />
-      <Footer />
     </div>
   );
 };

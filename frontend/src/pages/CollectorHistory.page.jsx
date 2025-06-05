@@ -8,7 +8,7 @@ const CollectorHistoryPage = () => {
     <div className="bg-[#6C6C81] min-h-screen">
       <AuthHeader />
       <CollectorHistory />
-      <Footer />
+
     </div>
   );
 };

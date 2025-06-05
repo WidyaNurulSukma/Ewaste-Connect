@@ -1,8 +1,6 @@
 import axios from 'axios';
 const API_URL = 'https://e-waste-collection.onrender.com/api/v1/order';
 
-const GOOGLE_MAPS_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
-
 const cloudinaryUpload = async (data) => {
   const res = await axios.post(
     'https://api.cloudinary.com/v1_1/dkmdeg6fc/image/upload',
@@ -15,7 +13,8 @@ const createOrder = async (orderDetails, auth) => {
   try {
     const res = await axios.post(API_URL, orderDetails, {
       headers: {
-        Authorization: `Bearer ${auth}`
+        Authorization: `Bearer ${auth}`,
+        'Cache-Control': 'no-cache'
       }
     });
     return res;
@@ -31,7 +30,8 @@ const acceptOrder = async (orderId, auth) => {
       {},
       {
         headers: {
-          Authorization: `Bearer ${auth}`
+          Authorization: `Bearer ${auth}`,
+          'Cache-Control': 'no-cache'
         }
       }
     );
@@ -45,7 +45,8 @@ const getAllOrders = async (auth) => {
   try {
     const resp = await axios.get(API_URL, {
       headers: {
-        Authorization: `Bearer ${auth}`
+        Authorization: `Bearer ${auth}`,
+        'Cache-Control': 'no-cache'
       }
     });
     return resp;
@@ -55,29 +56,13 @@ const getAllOrders = async (auth) => {
   }
 };
 
-const reverseGeocode = async (lat, lng) => {
-  try {
-    const res = await axios.get(
-      `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${GOOGLE_MAPS_API_KEY}`
-    );
-
-    if (res.data.status === 'OK') {
-      const address = res.data.results[0].formatted_address;
-      return address;
-    } else {
-      throw new Error('Geocoding failed: ' + res.data.status);
-    }
-  } catch (error) {
-    console.error('Error in reverse geocoding:', error);
-    throw error;
-  }
-};
 
 const deleteOrder = async (orderId, auth) => {
   try {
     const res = await axios.delete(`${API_URL}/${orderId}`, {
       headers: {
-        Authorization: `Bearer ${auth}`
+        Authorization: `Bearer ${auth}`,
+        'Cache-Control': 'no-cache'
       }
     });
     return res;
@@ -90,7 +75,8 @@ const getUserOrders = async (auth) => {
   try {
     const resp = await axios.get(`${API_URL}/user`, {
       headers: {
-        Authorization: `Bearer ${auth}`
+        Authorization: `Bearer ${auth}`,
+        'Cache-Control': 'no-cache'
       }
     });
     return resp;
@@ -104,7 +90,8 @@ const getAcceptedOrders = async (auth) => {
   try {
     const resp = await axios.get(`${API_URL}/accepted`, {
       headers: {
-        Authorization: `Bearer ${auth}`
+        Authorization: `Bearer ${auth}`,
+        'Cache-Control': 'no-cache'
       }
     });
     return resp;
@@ -121,7 +108,8 @@ const updateOrderStatus = async (orderId, status, auth) => {
       { status },
       {
         headers: {
-          Authorization: `Bearer ${auth}`
+          Authorization: `Bearer ${auth}`,
+          'Cache-Control': 'no-cache'
         }
       }
     );
@@ -137,7 +125,6 @@ export default {
   createOrder,
   acceptOrder,
   getAllOrders,
-  reverseGeocode,
   deleteOrder,
   getUserOrders,
   getAcceptedOrders,

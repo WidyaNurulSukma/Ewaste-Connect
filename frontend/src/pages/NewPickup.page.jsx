@@ -20,7 +20,6 @@ const EWastePickupFlow = () => {
         <EWastePickupForm onSubmit={handleFormSubmit} />
       )}
       {currentStep === 'map' && <PickupLocationMap formData={formData} />}
-      <Footer />
     </div>
   );
 };

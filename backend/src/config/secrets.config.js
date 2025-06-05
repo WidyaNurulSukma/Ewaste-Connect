@@ -1,9 +1,4 @@
 require('dotenv').config();
-module.exports = {
-  PORT: process.env.PORT,
-  MONGO_URL: process.env.MONGO_URL,
-  JWT_SECRET_KEY: process.env.JWT_SECRET_KEY
-};
 
 const PORT = process.env.PORT || 5000;
 const MONGO_URL = process.env.MONGO_URL?.trim() || "";

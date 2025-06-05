@@ -20,32 +20,32 @@ const Signup = () => {
       const resp = await authService.registerUser(data);
       console.log(resp);
       if (resp.status === 201) {
-        console.log('User created successfully');
         toast({
           title: 'Account Created',
-          description: 'Check your email to verify your account',
+          description: 'Akun anda berhasil dibuat',
           status: 'success',
           isClosable: true,
-          duration: 9000
+          duration: 9000,
         });
-        setIsLoading(!isLoading);
+        setIsLoading(false);
       } else if (resp.status === 409) {
         toast({
           title: 'Email is already in use',
           description: 'A user with that email already exists, try another one',
           status: 'error',
           isClosable: true,
-          duration: 9000
+          duration: 9000,
         });
-        setIsLoading(!isLoading);
+        setIsLoading(false);
       } else {
         toast({
           title: 'An unknown error occurred',
           description: 'Our team is aware and is working to fix this',
           status: 'error',
           isClosable: true,
-          duration: 9000
+          duration: 9000,
         });
+        setIsLoading(false);
       }
     } catch (error) {
       console.error('Error during user registration:', error);
@@ -54,8 +54,9 @@ const Signup = () => {
         description: 'Something went wrong. Please try again.',
         status: 'error',
         isClosable: true,
-        duration: 9000
+        duration: 9000,
       });
+      setIsLoading(false);
     }
   };
 
@@ -81,23 +82,18 @@ const Signup = () => {
 
   return (
     <div className="min-h-screen bg-white flex flex-row items-center justify-center px-8 relative">
-      {/* Logo di Pojok Kiri Atas */}
-      <div className="absolute top-6 left-6">
-        <h1 className="text-2xl font-bold text-blue-800">eWaste Connect</h1>
-      </div>
-
       {/* Ilustrasi Karakter di Kiri */}
-      <div className="flex justify-start items-start w-1/2 pl-0">
+      <div className="flex justify-start items-start w-1/2 pl-0 ml-0">
         <img
           src="/Component 1.png"
           alt="Header Illustration"
-          className="w-[400px] h-auto object-contain"
+          className="w-[400px] h-auto object-contain ml-[-180px] mt-[0px]"
         />
       </div>
 
       {/* Formulir Signup di Kanan */}
-      <div className="w-1/2 max-w-md bg-white rounded-lg shadow-lg p-6 -ml-50 -mt-50">
-        <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">Sign Up</h2>
+      <div className="w-2/5 max-w-md bg-white rounded-lg shadow-lg p-6 -ml-40 -mt-0">
+        <h2 className="text-2xl font-semibold text-gray-800 mb-4 text-center">Sign Up</h2>
 
         {isLoading ? (
           <div className="flex justify-center">
@@ -106,56 +102,56 @@ const Signup = () => {
         ) : (
           <>
             <form onSubmit={handleSubmit}>
-              <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-semibold mb-2">Full Name</label>
+              <div className="mb-3">
+                <label className="block text-gray-700 text-xs font-semibold mb-1">Full Name</label>
                 <input
                   type="text"
                   placeholder="Full name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                  className="w-full p-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
                   required
                 />
               </div>
-              <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-semibold mb-2">Email</label>
+              <div className="mb-3">
+                <label className="block text-gray-700 text-xs font-semibold mb-1">Email</label>
                 <input
                   type="email"
                   placeholder="Email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                  className="w-full p-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
                   required
                 />
               </div>
-              <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-semibold mb-2">Password</label>
+              <div className="mb-3">
+                <label className="block text-gray-700 text-xs font-semibold mb-1">Password</label>
                 <input
                   type="password"
                   placeholder="Password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                  className="w-full p-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
                   required
                 />
               </div>
-              <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-semibold mb-2">Username</label>
+              <div className="mb-3">
+                <label className="block text-gray-700 text-xs font-semibold mb-1">Username</label>
                 <input
                   type="text"
                   placeholder="Username"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                  className="w-full p-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
                   required
                 />
               </div>
-              <div className="mb-6">
-                <label className="block text-gray-700 text-sm font-semibold mb-2">Role</label>
+              <div className="mb-4">
+                <label className="block text-gray-700 text-xs font-semibold mb-1">Role</label>
                 <select
                   value={role}
                   onChange={(e) => setRole(e.target.value)}
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                  className="w-full p-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
                   required
                 >
                   <option value="user">User</option>
@@ -165,7 +161,7 @@ const Signup = () => {
 
               <button
                 type="submit"
-                className="w-full bg-blue-800 hover:bg-blue-900 text-white font-bold py-3 rounded-lg"
+                className="w-full bg-blue-800 hover:bg-blue-900 text-white font-semibold py-2 rounded-md text-sm"
                 disabled={isLoading}
               >
                 {isLoading ? 'Signing Up...' : 'Sign Up'}
@@ -173,35 +169,35 @@ const Signup = () => {
             </form>
 
             {/* Opsi Signup dengan Google/Facebook */}
-            <div className="mt-6">
-              <p className="text-center text-gray-500 text-sm mb-4">or</p>
+            <div className="mt-4">
+              <p className="text-center text-gray-500 text-xs mb-3">or</p>
               <button
                 onClick={handleGoogleSignup}
-                className="w-full flex items-center justify-center gap-2 p-3 border border-gray-300 rounded-lg mb-3 hover:bg-gray-100"
+                className="w-full flex items-center justify-center gap-2 p-2 border border-gray-300 rounded-md mb-2 hover:bg-gray-100 text-sm"
               >
                 <img
                   src="https://www.google.com/favicon.ico"
                   alt="Google"
-                  className="w-5 h-5"
+                  className="w-4 h-4"
                 />
                 Sign Up with Google
               </button>
               <button
                 onClick={handleFacebookSignup}
-                className="w-full flex items-center justify-center gap-2 p-3 border border-gray-300 rounded-lg hover:bg-gray-100"
+                className="w-full flex items-center justify-center gap-2 p-2 border border-gray-300 rounded-md hover:bg-gray-100 text-sm"
               >
                 <img
                   src="https://www.facebook.com/favicon.ico"
                   alt="Facebook"
-                  className="w-5 h-5"
+                  className="w-4 h-4"
                 />
                 Sign Up with Facebook
               </button>
             </div>
 
             {/* Tautan Login */}
-            <div className="mt-6 text-center">
-              <p className="text-gray-700 text-sm">
+            <div className="mt-4 text-center text-xs">
+              <p className="text-gray-700">
                 Already have an account?{' '}
                 <a
                   href="/account/login"

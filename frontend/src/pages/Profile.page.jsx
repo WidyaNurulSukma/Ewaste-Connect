@@ -7,7 +7,6 @@ const ProfilePage = () => {
     <div className="bg-[#332F9E] min-h-screen text-white">
       <AuthHeader />
       <UserProfile />
-      <Footer />
     </div>
   );
 };

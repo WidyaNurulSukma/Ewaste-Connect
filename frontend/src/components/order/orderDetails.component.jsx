@@ -15,10 +15,15 @@ const OrderList = ({ orders }) => {
   const auth = user.accessToken;
 
   useEffect(() => {
+    let isMounted = true;
+
     const fetchAddresses = async () => {
       try {
-        const updatedOrders = await Promise.all(
-          orders.map(async (order) => {
+        // Batasi hanya 5 order pertama untuk reverse geocode
+        const limitedOrders = orders.slice(0, 5);
+
+        const fetchedOrders = await Promise.all(
+          limitedOrders.map(async (order) => {
             if (order.location && !order.formattedAddress) {
               try {
                 const address = await orderService.reverseGeocode(
@@ -34,7 +39,15 @@ const OrderList = ({ orders }) => {
             return order;
           })
         );
-        setOrdersWithAddress(updatedOrders);
+
+        const restOrders = orders.slice(5).map((order) => ({
+          ...order,
+          formattedAddress: `Lat: ${order.location.lat}, Lng: ${order.location.lng}`
+        }));
+
+        if (isMounted) {
+          setOrdersWithAddress([...fetchedOrders, ...restOrders]);
+        }
       } catch (error) {
         console.error('Gagal mengambil alamat:', error);
         toast({
@@ -50,6 +63,10 @@ const OrderList = ({ orders }) => {
     if (orders.length > 0) {
       fetchAddresses();
     }
+
+    return () => {
+      isMounted = false;
+    };
   }, [orders, toast]);
 
   const handleStartPickup = async (orderId) => {
@@ -64,7 +81,7 @@ const OrderList = ({ orders }) => {
           isClosable: true,
           position: 'top-right'
         });
-        navigate('/daily-route'); // Mengarahkan ke halaman Rute Hari Ini
+        navigate('/daily-route');
       } else {
         toast({
           title: 'Gagal menerima penjemputan',
@@ -162,9 +179,7 @@ const OrderList = ({ orders }) => {
             </div>
             <div>
               <MapPin size={16} className='inline-block mr-2' />
-              <span>
-                {order.formattedAddress || `Lat: ${order.location.lat}, Lng: ${order.location.lng}`}
-              </span>
+              <span>{order.formattedAddress}</span>
             </div>
           </div>
           <div className='bg-blue-100 p-4 rounded-lg'>

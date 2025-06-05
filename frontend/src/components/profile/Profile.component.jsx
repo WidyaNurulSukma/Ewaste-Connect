@@ -58,7 +58,6 @@ const UserProfile = () => {
     const newRole = user.role === 'user' ? 'Collector' : 'user';
     try {
       const resp = await authService.updateUserRole(authuser.accessToken);
-      console.log(resp);
       if (resp.status === 200) {
         const currentUser = JSON.parse(localStorage.getItem('user'));
         localStorage.setItem('user', JSON.stringify({ ...currentUser, role: newRole }));
@@ -66,7 +65,7 @@ const UserProfile = () => {
         setUser({ ...user, role: newRole });
 
         return toast({
-          title: 'Account changed ',
+          title: 'Account changed',
           isClosable: true,
           duration: 7000,
           position: 'top-right',
@@ -94,7 +93,6 @@ const UserProfile = () => {
       formData.append('cloud_name', 'dkmdeg6fc');
 
       const response = await orderService.cloudinaryUpload(formData);
-
       const data = response.data;
 
       if (data.secure_url) {
@@ -131,7 +129,7 @@ const UserProfile = () => {
 
   return (
     <div className='max-w-3xl mx-auto mt-10 mb-6'>
-      <div className='bg-white rounded-lg shadow-md overflow-hidden'>
+      <div className='bg-white rounded-2xl shadow-md overflow-hidden'>
         <div className='px-4 py-5 sm:px-6 bg-[#332F9E] text-white'>
           <h3 className='text-2xl font-bold'>Edit Profil</h3>
         </div>
@@ -177,40 +175,32 @@ const UserProfile = () => {
             </div>
             <div className='flex items-center'>
               <User2Icon className='h-5 w-5 text-gray-400 mr-2' />
-              <span className='font-medium mr-2 text-black '>Account:</span>
+              <span className='font-medium mr-2 text-black'>Account:</span>
               <span className='text-black'>{user.role}</span>
               <button
                 onClick={handleAccountChange}
-                className='ml-4 px-3 py-1 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2'
+                className='px-2 py-2 bg-[#332F9E] text-white rounded-md hover:bg-[#2B2A85] focus:outline-none focus:ring-2 focus:ring-[#332F9E] ml-2'
               >
                 Ganti Akun
               </button>
             </div>
             <div className='mt-6'>
               {isEditing ? (
-                <div className='space-x-4'>
-                  <button
-                    onClick={handleSave}
-                    className='px-4 py-2 bg-green-600 text-black rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2'
-                  >
-                    Save Changes
-                  </button>
-                  <button
-                    onClick={handleCancel}
-                    className='px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2'
-                  >
-                    Cancel
-                  </button>
-                </div>
-              ) : (
-                <button
-                  onClick={handleEdit}
-                  className='px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2'
-                >
-                  Edit Profile
-                </button>
-              )}
-            </div>
+          <button
+            onClick={handleSave}
+            className='px-2 py-2 bg-[#332F9E] text-white rounded-md hover:bg-[#2B2A85] focus:outline-none focus:ring-2 focus:ring-[#332F9E] ml-2'
+          >
+            Save Changes
+          </button>
+        ) : (
+          <button
+            onClick={handleEdit}
+            className='px-2 py-2 bg-[#332F9E] text-white rounded-md hover:bg-[#2B2A85] focus:outline-none focus:ring-2 focus:ring-[#332F9E] ml-2'
+          >
+            Edit Profile
+          </button>
+        )}
+          </div>
           </div>
           <div className='w-1/3 flex flex-col items-center'>
             <label htmlFor='profile-image-upload' className='cursor-pointer'>
@@ -234,13 +224,15 @@ const UserProfile = () => {
                 disabled={isUploading}
               />
             </label>
-            <button
-              onClick={() => document.getElementById('profile-image-upload').click()}
-              className='px-4 py-2 bg-[#332F9E] text-white rounded-md hover:bg-[#2B2A85] focus:outline-none focus:ring-2 focus:ring-[#332F9E]'
-              disabled={isUploading}
-            >
-              Unggah Gambar
-            </button>
+            {isEditing && (
+              <button
+                onClick={() => document.getElementById('profile-image-upload').click()}
+                className='mt-2 px-4 py-2 bg-[#332F9E] text-white rounded-md hover:bg-[#2B2A85] focus:outline-none focus:ring-2 focus:ring-[#332F9E]'
+                disabled={isUploading}
+              >
+                Unggah Gambar
+              </button>
+            )}
           </div>
         </div>
       </div>

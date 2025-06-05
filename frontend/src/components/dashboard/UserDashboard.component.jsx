@@ -81,15 +81,15 @@ const UserDashboard = () => {
             <h2 className='text-xl font-semibold mb-4 text-black'>Permintaan Penjemputan Anda</h2>
             <div className='flex justify-between'>
               <div>
-                <p className='text-gray-600'>Completed</p>
+                <p className='text-gray-600'>Selesai</p>
                 <p className='text-2xl font-bold text-green-600'>{pickupStats.completed}</p>
               </div>
               <div>
-                <p className='text-gray-600'>Pending</p>
+                <p className='text-gray-600'>Tertunda</p>
                 <p className='text-2xl font-bold text-yellow-600'>{pickupStats.pending}</p>
               </div>
               <div>
-                <p className='text-gray-600'>Scheduled</p>
+                <p className='text-gray-600'>Dijadwalkan</p>
                 <p className='text-2xl font-bold text-blue-600'>{pickupStats.scheduled}</p>
               </div>
             </div>
@@ -118,7 +118,7 @@ const UserDashboard = () => {
             {userData.orders && userData.orders.filter(order => order.status !== 'completed').slice(0, 2).map((order, index) => (
               <li key={index} className='flex items-center text-gray-600'>
                 <Calendar size={20} className='mr-2' />
-                <span>Pickup scheduled for {new Date(order.createdAt).toLocaleDateString()}</span>
+                <span>Penjemputan dijadwalkan pada {new Date(order.createdAt).toLocaleDateString()}</span>
               </li>
             ))}
           </ul>
@@ -127,8 +127,7 @@ const UserDashboard = () => {
         <div className='bg-white p-6 rounded-lg'>
           <h2 className='text-xl font-semibold mb-4 text-black'>E-Waste Tip</h2>
           <p className='text-gray-700'>
-            Before scheduling a pickup, make sure to back up your data and remove any personal information from your devices.
-            This helps protect your privacy and makes the recycling process more efficient!
+          Selalu kenakan perlengkapan keselamatan yang tepat saat menangani limbah elektronik untuk melindungi diri dari bahan berbahaya.
           </p>
         </div>
       </div>
